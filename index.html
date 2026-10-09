@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Liệu Cốt Lõi: TypeScript, Next.js, NestJS</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233178C6'%3E%3Cpath d='M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM12.95 20.315c-1.528 0-2.822-.387-3.884-1.161-.692-.51-1.109-1.077-1.252-1.698-.066-.277.01-.58.204-.798.196-.217.472-.34.764-.34h1.059c.356 0 .685.18.868.48.435.733 1.052 1.099 1.85 1.099 1.155 0 1.954-.533 1.954-1.298 0-.663-.442-1.123-1.328-1.381l-1.397-.396c-1.956-.56-2.933-1.611-2.933-3.153 0-1.12.433-2.072 1.3-2.857.866-.784 2.062-1.176 3.59-1.176 1.365 0 2.502.327 3.41.982.607.439.992.998 1.156 1.675.07.311-.01.644-.22.883-.21.239-.523.376-.84.376h-1.002c-.349 0-.671-.168-.86-.452-.395-.595-.945-.892-1.652-.892-.932 0-1.613.435-1.613 1.11 0 .633.407 1.05 1.222 1.251l1.516.376c2.03.518 3.045 1.621 3.045 3.31 0 1.196-.462 2.193-1.387 2.991-.925.798-2.188 1.197-3.791 1.197zM11.458 9.38v10.37c0 .504-.41.913-.913.913H8.384c-.504 0-.913-.41-.913-.913V9.38H4.664c-.504 0-.913-.41-.913-.913V6.634c0-.504.41-.913.913-.913h9.61c.504 0 .913.41.913.913v1.833c0 .504-.41.913-.913.913h-2.816z'/%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .glow-ts { box-shadow: 0 0 15px rgba(49, 120, 198, 0.15); }
+        .glow-next { box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); }
+        .glow-nest { box-shadow: 0 0 15px rgba(224, 35, 78, 0.15); }
+        
+        .nav-link.active-ts { color: #3178C6; font-weight: 600; border-left-color: #3178C6; background-color: #eff6ff;}
+        .nav-link.active-next { color: #000000; font-weight: 600; border-left-color: #000000; background-color: #f1f5f9;}
+        .nav-link.active-nest { color: #E0234E; font-weight: 600; border-left-color: #E0234E; background-color: #fff1f2;}
+        .nav-link.active-glossary { color: #059669; font-weight: 600; border-left-color: #059669; background-color: #ecfdf5;}
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 bg-opacity-90 backdrop-blur-sm">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-bold text-slate-800 tracking-tight">Fullstack<span class="text-blue-600">Mastery</span></span>
+                <span class="hidden sm:inline-block px-2 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded border border-slate-200">TS + Next.js + NestJS (Ultimate)</span>
+            </div>
+            <div class="text-sm text-slate-500 font-medium hidden md:block">Bí kíp thực chiến, tra cứu cực nhanh</div>
+        </div>
+    </header>
+
+    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <aside class="w-full lg:w-72 flex-shrink-0 hidden lg:block">
+            <nav class="sticky top-24 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-8rem)] pb-10 pr-2">
+                
+                <!-- Group TypeScript -->
+                <div>
+                    <h3 class="font-bold text-blue-700 text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="#3178C6" viewBox="0 0 24 24"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM12.95 20.315c-1.528 0-2.822-.387-3.884-1.161-.692-.51-1.109-1.077-1.252-1.698-.066-.277.01-.58.204-.798.196-.217.472-.34.764-.34h1.059c.356 0 .685.18.868.48.435.733 1.052 1.099 1.85 1.099 1.155 0 1.954-.533 1.954-1.298 0-.663-.442-1.123-1.328-1.381l-1.397-.396c-1.956-.56-2.933-1.611-2.933-3.153 0-1.12.433-2.072 1.3-2.857.866-.784 2.062-1.176 3.59-1.176 1.365 0 2.502.327 3.41.982.607.439.992.998 1.156 1.675.07.311-.01.644-.22.883-.21.239-.523.376-.84.376h-1.002c-.349 0-.671-.168-.86-.452-.395-.595-.945-.892-1.652-.892-.932 0-1.613.435-1.613 1.11 0 .633.407 1.05 1.222 1.251l1.516.376c2.03.518 3.045 1.621 3.045 3.31 0 1.196-.462 2.193-1.387 2.991-.925.798-2.188 1.197-3.791 1.197zM11.458 9.38v10.37c0 .504-.41.913-.913.913H8.384c-.504 0-.913-.41-.913-.913V9.38H4.664c-.504 0-.913-.41-.913-.913V6.634c0-.504.41-.913.913-.913h9.61c.504 0 .913.41.913.913v1.833c0 .504-.41.913-.913.913h-2.816z"/></svg>
+                        TypeScript
+                    </h3>
+                    <div class="flex flex-col gap-1 border-l-2 border-slate-200 pl-3">
+                        <a href="#ts-intro" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-blue-600 rounded transition-colors active-ts" data-group="ts">1. Type vs Interface</a>
+                        <a href="#ts-generics" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-blue-600 rounded transition-colors" data-group="ts">2. Generics (Biến kiểu dữ liệu)</a>
+                        <a href="#ts-utilities" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-blue-600 rounded transition-colors" data-group="ts">3. Utility Types (Omit, Pick...)</a>
+                        <a href="#ts-advanced" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-blue-600 rounded transition-colors" data-group="ts">4. TS Nâng cao (keyof, typeof...)</a>
+                    </div>
+                </div>
+
+                <!-- Group Next.js -->
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" viewBox="0 0 128 128" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M64 128C99.3462 128 128 99.3462 128 64C128 28.6538 99.3462 0 64 0C28.6538 0 0 28.6538 0 64C0 99.3462 28.6538 128 64 128ZM86.0792 88.0003L43.6806 36.3129C42.4277 34.7865 40.5401 33.9124 38.5638 33.9124H35.4055C31.5458 33.9124 28.4168 37.0413 28.4168 40.901V87.0877C28.4168 89.2619 30.1794 91.0245 32.3536 91.0245H36.3867C38.5609 91.0245 40.3235 89.2619 40.3235 87.0877V51.7208L73.9149 92.6582C75.2934 94.3377 77.3486 95.2755 79.5218 95.2755H82.9103C86.666 95.2755 89.7107 92.2307 89.7107 88.4751V40.901C89.7107 38.7268 87.9481 36.9642 85.7739 36.9642H81.7408C79.5666 36.9642 77.804 38.7268 77.804 40.901V78.0263L86.0792 88.0003Z" fill="black"/></svg>
+                        Next.js (App Router)
+                    </h3>
+                    <div class="flex flex-col gap-1 border-l-2 border-slate-200 pl-3">
+                        <a href="#next-arch" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-slate-900 rounded transition-colors" data-group="next">5. Server vs Client Components</a>
+                        <a href="#next-routing" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-slate-900 rounded transition-colors" data-group="next">6. Routing Chuyên Sâu</a>
+                        <a href="#next-caching" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-slate-900 rounded transition-colors" data-group="next">7. 4 Tầng Caching (Chi tiết)</a>
+                        <a href="#next-hooks" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-slate-900 rounded transition-colors" data-group="next">8. Hooks Mới & Custom Hooks</a>
+                        <a href="#next-pro" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-slate-900 rounded transition-colors" data-group="next">9. Kỹ thuật Pro (SEO, Context, Lazy)</a>
+                    </div>
+                </div>
+
+                <!-- Group NestJS -->
+                <div class="mt-4">
+                    <h3 class="font-bold text-rose-600 text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" viewBox="0 0 512 512" fill="#E0234E"><path d="M256 0c-141.4 0-256 114.6-256 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zM128 256c0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128S128 326.7 128 256zm128-96c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm-48 96c0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48-48-21.5-48-48z"/></svg>
+                        NestJS (Backend)
+                    </h3>
+                    <div class="flex flex-col gap-1 border-l-2 border-slate-200 pl-3">
+                        <a href="#nest-express" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-rose-600 rounded transition-colors" data-group="nest">10. Ánh xạ từ ExpressJS sang Nest</a>
+                        <a href="#nest-arch" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-rose-600 rounded transition-colors" data-group="nest">11. Module & Controller</a>
+                        <a href="#nest-pipeline" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-rose-600 rounded transition-colors" data-group="nest">12. Middleware, Guard, Interceptor</a>
+                        <a href="#nest-decorators" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-rose-600 rounded transition-colors" data-group="nest">13. Custom Decorator & Scopes</a>
+                    </div>
+                </div>
+
+                <!-- Group Glossary -->
+                <div class="mt-4">
+                    <h3 class="font-bold text-emerald-600 text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        Từ Điển & Khái Niệm
+                    </h3>
+                    <div class="flex flex-col gap-1 border-l-2 border-slate-200 pl-3">
+                        <a href="#glossary" class="nav-link block py-2 px-3 text-sm text-slate-600 hover:text-emerald-600 rounded transition-colors" data-group="glossary">14. Từ Điển Thuật Ngữ IT</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 min-w-0 pb-32">
+            
+            <div class="mb-4 bg-blue-50 text-blue-800 p-4 rounded-xl border border-blue-200 flex items-start gap-4">
+                <div class="text-3xl">📘</div>
+                <div>
+                    <h2 class="font-bold text-lg mb-1">Chặng 1: TypeScript (Cái móng nhà)</h2>
+                    <p class="text-sm">Hiểu sâu Type/Interface và Generics là điều kiện tiên quyết để code NextJS và NestJS không bị báo lỗi đỏ lòm. Mọi thứ quy chuẩn sẽ giúp bạn đỡ debug hàng giờ liền.</p>
+                </div>
+            </div>
+
+            <section id="ts-intro" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-blue-600">#</span> 1. Type Alias vs Interface</h3>
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="p-4 font-bold text-slate-800 w-1/2 border-r border-slate-200">Interface (Nên dùng cho Object/Class)</th>
+                                <th class="p-4 font-bold text-slate-800 w-1/2">Type Alias (Nên dùng cho logic/Union)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 align-top">
+                                    <div class="group relative cursor-pointer" onclick="copyCode(this)">
+                                        <pre class="bg-slate-800 p-3 rounded text-slate-300 font-mono text-xs"><span class="text-sky-400">interface</span> User { id: number; }
+<span class="text-slate-500">// Kế thừa bằng "extends"</span>
+<span class="text-sky-400">interface</span> Admin <span class="text-sky-400">extends</span> User { role: string; }
+
+<span class="text-slate-500">// Gộp (Declaration Merging) - Tự động nối khi trùng tên</span>
+<span class="text-sky-400">interface</span> User { age: number; }</pre>
+                                    </div>
+                                    <p class="mt-2 text-xs text-slate-500">Thường dùng trong NestJS (DTOs, Repositories).</p>
+                                </td>
+                                <td class="p-4 align-top">
+                                    <div class="group relative cursor-pointer" onclick="copyCode(this)">
+                                        <pre class="bg-slate-800 p-3 rounded text-slate-300 font-mono text-xs"><span class="text-sky-400">type</span> User = { id: number; }
+<span class="text-slate-500">// Kế thừa bằng dấu "&" (Intersection)</span>
+<span class="text-sky-400">type</span> Admin = User & { role: string; }
+
+<span class="text-slate-500">// LỖI: Không thể khai báo đè tên Type đã có</span>
+<span class="text-sky-400">type</span> Status = <span class="text-green-300">'success'</span> | <span class="text-green-300">'error'</span>;</pre>
+                                    </div>
+                                    <p class="mt-2 text-xs text-slate-500">Dùng nhiều trong React (Props, Union Types).</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="ts-generics" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-blue-600">#</span> 2. Generics (Biến Kiểu Dữ Liệu)</h3>
+                <div class="bg-slate-900 p-4 rounded-xl shadow-sm group relative cursor-pointer mb-4" onclick="copyCode(this)">
+                    <pre class="text-sm text-slate-300 font-mono overflow-x-auto"><span class="text-slate-500">// T là "biến kiểu dữ liệu" sẽ được truyền vào khi gọi hàm</span>
+<span class="text-sky-400">async function</span> fetchData&lt;<span class="text-yellow-300">T</span>&gt;(url: string): <span class="text-emerald-400">Promise</span>&lt;<span class="text-yellow-300">T</span>&gt; {
+  <span class="text-sky-400">const</span> res = <span class="text-sky-400">await</span> fetch(url);
+  <span class="text-sky-400">return</span> res.json();
+}
+<span class="text-slate-500">// Truyền interface User vào hàm, TS sẽ hiểu biến user có thuộc tính name</span>
+<span class="text-sky-400">const</span> user = <span class="text-sky-400">await</span> fetchData&lt;<span class="text-yellow-300">User</span>&gt;(<span class="text-green-300">'/api/user'</span>);</pre>
+                </div>
+            </section>
+
+            <section id="ts-utilities" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-blue-600">#</span> 3. Utility Types Thực chiến</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm">
+                        <code class="text-blue-600 font-bold bg-blue-50 px-1 rounded block mb-1 font-mono text-sm">Partial&lt;T&gt;</code>
+                        <p class="text-[11px] text-slate-600">Biến TẤT CẢ thuộc tính thành Optional (?). Dùng khi update data.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm">
+                        <code class="text-blue-600 font-bold bg-blue-50 px-1 rounded block mb-1 font-mono text-sm">Pick&lt;T, Keys&gt;</code>
+                        <p class="text-[11px] text-slate-600">Giữ lại một vài thuộc tính chỉ định (vd: chỉ lấy name và avatar).</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm">
+                        <code class="text-blue-600 font-bold bg-blue-50 px-1 rounded block mb-1 font-mono text-sm">Omit&lt;T, Keys&gt;</code>
+                        <p class="text-[11px] text-slate-600">Bỏ đi một vài thuộc tính (Ví dụ bỏ password ra khỏi User object).</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-3 rounded-lg shadow-sm">
+                        <code class="text-blue-600 font-bold bg-blue-50 px-1 rounded block mb-1 font-mono text-sm">Record&lt;K, T&gt;</code>
+                        <p class="text-[11px] text-slate-600">Tạo Object có tập hợp các Key K và value đều thuộc kiểu T.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ts-advanced" class="mb-16 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-blue-600">#</span> 4. TypeScript Nâng Cao (Pro level)</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="bg-slate-900 p-4 rounded-xl shadow-sm text-slate-300 font-mono text-xs leading-relaxed group cursor-pointer" onclick="copyCode(this)">
+                        <div class="text-green-400 mb-2 font-bold">// 1. typeof, keyof & as const</div>
+                        <span class="text-sky-400">const</span> COLORS = { red: <span class="text-green-300">'#f00'</span>, blue: <span class="text-green-300">'#00f'</span> } <span class="text-sky-400">as const</span>; 
+                        <span class="text-slate-500">// as const ép kiểu thành Readonly, cấm sửa đổi.</span><br><br>
+                        
+                        <span class="text-slate-500">// Trích xuất kiểu dữ liệu của biến COLORS đang có</span><br>
+                        <span class="text-sky-400">type</span> ColorObj = <span class="text-sky-400">typeof</span> COLORS;<br><br>
+
+                        <span class="text-slate-500">// Lấy ra danh sách các Keys của Object đó -> "red" | "blue"</span><br>
+                        <span class="text-sky-400">type</span> ColorKeys = <span class="text-sky-400">keyof</span> ColorObj;
+                    </div>
+
+                    <div class="bg-slate-900 p-4 rounded-xl shadow-sm text-slate-300 font-mono text-xs leading-relaxed group cursor-pointer" onclick="copyCode(this)">
+                        <div class="text-green-400 mb-2 font-bold">// 2. Lấy kiểu trả về (ReturnType & Awaited)</div>
+                        <span class="text-sky-400">const</span> getUser = <span class="text-sky-400">async</span> () => { <span class="text-sky-400">return</span> { id: <span class="text-yellow-300">1</span>, name: <span class="text-green-300">'Bob'</span> } };<br><br>
+                        
+                        <span class="text-slate-500">// Lấy kiểu Promise<{id: number, name: string}></span><br>
+                        <span class="text-sky-400">type</span> UserPromise = <span class="text-sky-400">ReturnType&lt;typeof</span> getUser&gt;;<br><br>
+                        
+                        <span class="text-slate-500">// Dùng Awaited để bóc lớp vỏ Promise ra, lấy kiểu lõi bên trong</span><br>
+                        <span class="text-sky-400">type</span> User = <span class="text-sky-400">Awaited&lt;</span>UserPromise&gt;; <span class="text-slate-500">// {id: number, name: string}</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-20 mb-4 bg-slate-100 text-slate-800 p-4 rounded-xl border border-slate-300 flex items-start gap-4 shadow-sm glow-next">
+                <div class="text-3xl">▲</div>
+                <div>
+                    <h2 class="font-bold text-lg mb-1">Chặng 2: Next.js 14/15 (App Router)</h2>
+                    <p class="text-sm">Kiến trúc Server-first. Next.js giờ đây gom gọn cả Backend nhẹ vào Frontend. Phải rạch ròi tư duy giữa cái gì chạy trên Server (để SEO, giấu API Key, Caching) và cái gì chạy dưới Client (trình duyệt người dùng để tương tác).</p>
+                </div>
+            </div>
+
+            <section id="next-arch" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-black">#</span> 5. Server vs Client Components</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-100 px-3 py-2 border-b border-slate-200 font-bold text-sm">Server Component (Mặc định)</div>
+                        <div class="p-3 bg-white text-xs text-slate-600">Không có <code>useState</code>, <code>onClick</code>. Chạy ngầm trên server, trả về HTML thuần. Hoàn hảo để: Fetch DB, SEO, giấu API Key.</div>
+                        <pre class="bg-slate-900 p-3 text-xs text-slate-300 font-mono m-0">
+<span class="text-sky-400">export default async function</span> Page() {
+  <span class="text-sky-400">const</span> data = <span class="text-sky-400">await</span> db.query(<span class="text-green-300">'...'</span>);
+  <span class="text-sky-400">return</span> &lt;<span class="text-emerald-400">div</span>&gt;{data.title}&lt;/<span class="text-emerald-400">div</span>&gt;;
+}</pre>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden border-l-4 border-l-blue-400">
+                        <div class="bg-slate-100 px-3 py-2 border-b border-slate-200 font-bold text-sm">Client Component ("use client")</div>
+                        <div class="p-3 bg-white text-xs text-slate-600">Dùng khi cần tương tác (Click, Form) hoặc Hooks (State, Effect, DOM API). Mã JS sẽ bị tải xuống máy người dùng.</div>
+                        <pre class="bg-slate-900 p-3 text-xs text-slate-300 font-mono m-0">
+<span class="text-green-400">"use client"</span>;
+<span class="text-sky-400">import</span> { useState } <span class="text-sky-400">from</span> <span class="text-green-300">'react'</span>;
+<span class="text-sky-400">export default function</span> Btn() {
+  <span class="text-sky-400">const</span> [st, setSt] = useState(0);
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="next-routing" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-black">#</span> 6. Routing Chuyên Sâu (App Router)</h3>
+                <div class="bg-slate-900 p-5 rounded-xl shadow-sm text-slate-300 text-sm font-mono overflow-x-auto leading-relaxed">
+                    <p class="text-green-400 mb-2">// File System Routing: Thư mục tạo ra URL, các file đặc biệt đóng vai trò Render</p>
+                    app/<br>
+                    ├── [id]/page.tsx         <span class="text-slate-500">-> Dynamic Route. VD: /post/123 (Nhận params.id)</span><br>
+                    ├── [...slug]/page.tsx    <span class="text-slate-500">-> Catch-all Route. VD: /shop/clothes/tops (Bắt mọi sub-path thành array)</span><br>
+                    ├── (auth)/login/page.tsx <span class="text-slate-500">-> Route Group. Ngoặc đơn tàng hình, URL vẫn là /login (Giúp gom nhóm layout)</span><br>
+                    ├── @modal/(..)photo/     <span class="text-slate-500">-> Intercepting + Parallel: Hiện Photo dưới dạng Modal đè lên trang hiện tại thay vì chuyển trang. (Hơi khó hiểu, giống feed Instagram).</span><br>
+                    └── api/users/route.ts    <span class="text-slate-500">-> Route Handler: Viết REST API (GET, POST...) giống Express (Thay thế API Routes cũ).</span><br>
+                </div>
+                
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm mb-2">5 File Đặc biệt cốt lõi</h4>
+                        <ul class="text-xs text-slate-600 space-y-2 font-mono">
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">layout.tsx</span>: Khung bọc ngoài (Navbar/Footer). Không bị render lại khi đổi trang.</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">page.tsx</span>: Giao diện chính của đường dẫn đó.</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">loading.tsx</span>: Hiện Skeleton lúc fetch data (tự động bọc Suspense bên ngoài page).</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">error.tsx</span>: Cần `"use client"`. Bắt lỗi crash UI cục bộ, không sập cả web.</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">not-found.tsx</span>: Giao diện lỗi 404 tùy chỉnh.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm mb-2">Route Handlers (api/route.ts)</h4>
+                        <p class="text-xs text-slate-500 mb-2">Cách tạo API endpoint trực tiếp bằng Next.js.</p>
+                        <pre class="bg-slate-800 p-2 rounded text-[11px] text-slate-300 font-mono"><span class="text-sky-400">import</span> { NextResponse } <span class="text-sky-400">from</span> <span class="text-green-300">'next/server'</span>;
+
+<span class="text-sky-400">export async function</span> GET(req: Request) {
+  <span class="text-sky-400">const</span> { searchParams } = <span class="text-sky-400">new</span> URL(req.url);
+  <span class="text-sky-400">return</span> NextResponse.json({ msg: <span class="text-green-300">'Hello API'</span> });
+}</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="next-caching" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-black">#</span> 7. Caching (Sức mạnh 4 tầng của Next.js)</h3>
+                <p class="text-sm text-slate-600 mb-4">Next.js mặc định cache cực kỳ gắt gao để tối ưu tốc độ. Có 4 tầng cache (Next 14+) bạn bắt buộc phải phân biệt được:</p>
+                <div class="space-y-3 text-sm">
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg flex items-start gap-3">
+                        <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs shrink-0">1. Request Memoization</div>
+                        <div>
+                            <p class="text-slate-600 text-xs mt-1"><strong>Vị trí: RAM Server.</strong> Nếu bạn gọi <code>fetch('api/user')</code> ở Layout, rồi gọi Y HỆT lệnh đó ở Page trong cùng 1 vòng đời render. Nextjs chỉ gọi mạng 1 lần, lần 2 lấy từ RAM ra xài (Deduplication). Không cần truyền props lằng nhằng nữa.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg flex items-start gap-3">
+                        <div class="bg-emerald-100 text-emerald-700 font-bold px-2 py-1 rounded text-xs shrink-0">2. Data Cache</div>
+                        <div>
+                            <p class="text-slate-600 text-xs mt-1"><strong>Vị trí: Đĩa cứng Server.</strong> Kết quả của hàm <code>fetch()</code> được lưu lại vĩnh viễn trên ổ cứng (như Redis). <br>
+                            👉 <strong>Xoá/Cập nhật cache:</strong> Dùng <code>revalidatePath('/blog')</code> hoặc <code>revalidateTag('tag1')</code> trong Server Action, hoặc <code>next: { revalidate: 3600 }</code> (Tự xóa sau 1h - ISR).</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg flex items-start gap-3">
+                        <div class="bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded text-xs shrink-0">3. Full Route Cache</div>
+                        <div>
+                            <p class="text-slate-600 text-xs mt-1"><strong>Vị trí: Đĩa cứng Server.</strong> Lúc build (<code>npm run build</code>), Next render sẵn ra HTML tĩnh cho các trang không có biến số động (Static generation). Để ép 1 trang luôn render động mỗi khi có request: <code>export const dynamic = 'force-dynamic';</code></p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg flex items-start gap-3">
+                        <div class="bg-purple-100 text-purple-700 font-bold px-2 py-1 rounded text-xs shrink-0">4. Router Cache</div>
+                        <div>
+                            <p class="text-slate-600 text-xs mt-1"><strong>Vị trí: Trình duyệt Client.</strong> Khi người dùng chuyển trang tới lui (bằng <code>&lt;Link&gt;</code>), Next giữ lại kết quả (RSC payload) của các trang đã đi qua trong vài giây để bấm `Back` không phải tải lại báo. Xóa bằng: <code>router.refresh()</code>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="next-hooks" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-black">#</span> 8. Hooks Mới & Custom Hooks ("use client" required)</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-slate-900 p-4 rounded-xl shadow-sm text-slate-300 font-mono text-xs leading-relaxed">
+                        <div class="text-green-400 mb-2 font-bold">// Built-in Next.js Routing Hooks ('next/navigation')</div>
+                        <span class="text-sky-400">const</span> router = useRouter(); <span class="text-slate-500">// router.push('/'), .back(), .refresh()</span><br>
+                        <span class="text-sky-400">const</span> path = usePathname(); <span class="text-slate-500">// Lấy '/dashboard' (Dùng cho menu Active)</span><br>
+                        <span class="text-sky-400">const</span> searchParams = useSearchParams(); <span class="text-slate-500">// url?page=2 -> .get('page')</span><br>
+                        <span class="text-sky-400">const</span> params = useParams(); <span class="text-slate-500">// URL động: /post/[id] -> params.id</span>
+                    </div>
+
+                    <div class="bg-slate-900 p-4 rounded-xl shadow-sm text-slate-300 font-mono text-xs leading-relaxed">
+                        <div class="text-pink-400 mb-2 font-bold">// React 19/Next 15 Hooks (Xử lý Form/Server Action)</div>
+                        <span class="text-slate-500">// Dùng trong Button con để lấy trạng thái Loading của Form cha</span><br>
+                        <span class="text-sky-400">const</span> { pending } = useFormStatus();<br><br>
+                        <span class="text-slate-500">// Thay thế useFormState. Xử lý Form + Trả về lỗi từ Action</span><br>
+                        <span class="text-sky-400">const</span> [state, action, isPending] = useActionState(submitAction, null);<br><br>
+                        <span class="text-slate-500">// Cập nhật UI ngay lập tức giả mạo (Fake success) chờ API sau</span><br>
+                        <span class="text-sky-400">const</span> [optimistic, addOpt] = useOptimistic(state, updateFn);
+                    </div>
+                </div>
+
+                <!-- Custom Hooks -->
+                <h4 class="font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Top 3 Custom Hooks "Quốc Dân" bạn nên có</h4>
+                <div class="space-y-4">
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h5 class="font-bold text-sm text-blue-700 mb-1">1. useDebounce (Chống Spam Gọi API khi gõ ô Search)</h5>
+                        <pre class="bg-slate-800 p-3 rounded text-[11px] text-slate-300 font-mono cursor-pointer overflow-x-auto" onclick="copyCode(this)">
+<span class="text-sky-400">export function</span> useDebounce&lt;T&gt;(value: T, delay: number): T {
+  <span class="text-sky-400">const</span> [debouncedValue, setDebouncedValue] = useState&lt;T&gt;(value);
+  <span class="text-sky-400">useEffect</span>(() => {
+    <span class="text-sky-400">const</span> timer = setTimeout(() => setDebouncedValue(value), delay);
+    <span class="text-sky-400">return</span> () => clearTimeout(timer); <span class="text-slate-500">// Clear ngắt nhịp nếu người dùng gõ tiếp</span>
+  }, [value, delay]);
+  <span class="text-sky-400">return</span> debouncedValue;
+}</pre>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                            <h5 class="font-bold text-sm text-blue-700 mb-1">2. useLocalStorage</h5>
+                            <p class="text-xs text-slate-600 mb-2">Bọc <code>useState</code> lại, tự động <code>JSON.stringify</code> và đẩy xuống LocalStorage để giữ State khi load lại trang (Lưu ý cẩn thận lỗi Hydration SSR).</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                            <h5 class="font-bold text-sm text-blue-700 mb-1">3. useOnClickOutside</h5>
+                            <p class="text-xs text-slate-600 mb-2">Bắt sự kiện <code>mousedown</code> trên document. Nếu click chuột không rơi vào cái <code>ref</code> của Component thì thực thi hàm đóng Modal/Dropdown.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="next-pro" class="mb-16 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-black">#</span> 9. Kỹ Thuật Next.js "Pro" (Tuyệt chiêu)</h3>
+                
+                <div class="grid grid-cols-1 gap-5">
+                    <!-- Middleware -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">🛡️ Protected Routes bằng <code class="bg-slate-100 text-pink-600 px-1 rounded">middleware.ts</code></h4>
+                        <p class="text-xs text-slate-600 mb-3">Chặn ở vòng gửi xe (Edge Network). File này phải nằm ở thư mục GỐC (ngang hàng src/). Nó chạy trước khi request tới trang để kiểm tra Token JWT.</p>
+                        <pre class="bg-slate-800 p-3 rounded text-[11px] text-slate-300 font-mono cursor-pointer overflow-x-auto" onclick="copyCode(this)">
+<span class="text-sky-400">import</span> { NextResponse } <span class="text-sky-400">from</span> <span class="text-green-300">'next/server'</span>;
+<span class="text-sky-400">export function</span> middleware(req: Request) {
+  <span class="text-sky-400">const</span> token = req.cookies.get(<span class="text-green-300">'token'</span>);
+  <span class="text-sky-400">if</span> (!token && req.nextUrl.pathname.startsWith(<span class="text-green-300">'/admin'</span>)) {
+    <span class="text-sky-400">return</span> NextResponse.redirect(<span class="text-sky-400">new</span> URL(<span class="text-green-300">'/login'</span>, req.url)); <span class="text-slate-500">// Đá ra trang login</span>
+  }
+}
+<span class="text-sky-400">export const</span> config = { matcher: [<span class="text-green-300">'/admin/:path*'</span>] }; <span class="text-slate-500">// Chỉ chạy middleware với route này</span></pre>
+                    </div>
+
+                    <!-- Context API & Dynamic Meta -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">🌐 Context API với App Router</h4>
+                            <p class="text-xs text-slate-600 mb-2">Context BẮT BUỘC dùng "use client". Để bọc Layout (Server Component), hãy tạo file Provider riêng rồi nhúng vào <code>layout.tsx</code>.</p>
+                            <pre class="bg-slate-800 p-2 rounded text-[10px] text-slate-300 font-mono cursor-pointer" onclick="copyCode(this)">
+<span class="text-slate-500">// ThemeProvider.tsx</span>
+<span class="text-green-400">"use client"</span>;
+<span class="text-sky-400">export const</span> ThemeProvider = ({children}) => &lt;Context.Provider&gt;...
+
+<span class="text-slate-500">// layout.tsx (Server)</span>
+<span class="text-sky-400">return</span> &lt;<span class="text-emerald-400">body</span>&gt;&lt;<span class="text-emerald-400">ThemeProvider</span>&gt;{children}&lt;/<span class="text-emerald-400">ThemeProvider</span>&gt;&lt;/<span class="text-emerald-400">body</span>&gt;;</pre>
+                        </div>
+                        
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">🔍 Dynamic Metadata (SEO)</h4>
+                            <p class="text-xs text-slate-600 mb-2">Tạo thẻ meta SEO tự động lấy theo Database cho trang chi tiết Bài viết / Sản phẩm.</p>
+                            <pre class="bg-slate-800 p-2 rounded text-[10px] text-slate-300 font-mono cursor-pointer" onclick="copyCode(this)">
+<span class="text-slate-500">// Trong file page.tsx (Server Component)</span>
+<span class="text-sky-400">export async function</span> generateMetadata({ params }): Promise&lt;Metadata&gt; {
+  <span class="text-sky-400">const</span> product = <span class="text-sky-400">await</span> getProduct(params.id);
+  <span class="text-sky-400">return</span> { title: product.name, description: product.desc }
+}</pre>
+                        </div>
+                    </div>
+
+                    <!-- Image & Lazy & Suspense -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">⚡ Tối ưu Hiệu năng (Image & Lazy Load)</h4>
+                        <ul class="text-xs text-slate-600 space-y-2 font-mono">
+                            <li><strong class="text-pink-600">next/image:</strong> Dùng <code>&lt;Image&gt;</code> thay vì <code>&lt;img&gt;</code>. Nó tự nén ảnh thành WebP, tự động Lazy load khi cuộn tới, chống giật layout (bắt buộc khai báo width/height).</li>
+                            <li><strong class="text-pink-600">next/dynamic:</strong> Tải Component nặng (như biểu đồ, rich-text editor) dưới dạng Lazy. <br><code>const Chart = dynamic(() => import('./Chart'), { ssr: false })</code> (Tắt SSR nếu bị lỗi window is not defined).</li>
+                            <li><strong class="text-pink-600">&lt;Suspense&gt;:</strong> Chia nhỏ trang thành nhiều "cục". Khúc nào đang gọi API thì lấy <code>&lt;Suspense fallback={&lt;Spinner/&gt;}&gt;</code> bọc lại. Giao diện sẽ hiện liền ngay lập tức mà không phải chờ API dài cổ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-20 mb-4 bg-rose-50 text-rose-800 p-4 rounded-xl border border-rose-200 flex items-start gap-4 glow-nest">
+                <div class="text-3xl text-rose-600"><svg class="w-8 h-8" viewBox="0 0 512 512" fill="currentColor"><path d="M256 0c-141.4 0-256 114.6-256 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zM128 256c0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128S128 326.7 128 256zm128-96c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm-48 96c0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48-48-21.5-48-48z"/></svg></div>
+                <div>
+                    <h2 class="font-bold text-lg mb-1">Chặng 3: NestJS (Backend OOP)</h2>
+                    <p class="text-sm">NestJS thực chất dùng ExpressJS (hoặc Fastify) ở bên dưới. Nó khoác lên Express một lớp áo OOP nghiêm ngặt (Decorator, Dependency Injection) để dự án to cỡ nào cũng dễ dàng đọc và mở rộng.</p>
+                </div>
+            </div>
+
+            <section id="nest-express" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-rose-600">#</span> 10. Chuyển đổi tư duy: ExpressJS vs NestJS</h3>
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="p-4 font-bold text-slate-800 w-1/2 border-r border-slate-200">ExpressJS (Cũ - Callback Hell)</th>
+                                <th class="p-4 font-bold text-rose-600 w-1/2">NestJS (Tương đương - OOP & Decorator)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-[13px] font-mono">
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 text-slate-600">router.get('/users/:id', (req, res) => {...})</td>
+                                <td class="p-4 text-slate-800">@Get(':id') <br> findOne() {...} (Nằm trong @Controller('users'))</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 text-slate-600">const id = req.params.id;<br>const data = req.body;</td>
+                                <td class="p-4 text-slate-800">findOne(@Param('id') id, @Body() dto)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 text-slate-600">app.use(loggerMiddleware)</td>
+                                <td class="p-4 text-slate-800">class LoggerMiddleware implements NestMiddleware <br> (Cài đặt trong Module configure)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 text-slate-600">router.post('/', checkAuth, handler) <br><span class="text-[11px] text-slate-400">// checkAuth là middleware</span></td>
+                                <td class="p-4 text-slate-800">@UseGuards(JwtAuthGuard) <br> @Post()</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border-r border-slate-200 text-slate-600">res.status(200).json({ data: data, msg: 'ok' })</td>
+                                <td class="p-4 text-slate-800">return data; <br><span class="text-[11px] text-slate-500">// Nest tự HTTP 200/201. Dùng Interceptor bọc format JSON.</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="nest-arch" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-rose-600">#</span> 11. Kiến trúc Module, Controller, Provider</h3>
+                <div class="bg-slate-900 p-5 rounded-xl shadow-sm group relative cursor-pointer mb-4" onclick="copyCode(this)">
+                    <pre class="text-[11px] text-slate-300 font-mono overflow-x-auto">
+<span class="text-slate-500">// 1. SERVICE (Provider / Đầu bếp - Nơi xử lý Logic / Gọi DB)</span>
+@Injectable() <span class="text-slate-500">// Dán nhãn này thì nó mới có thể bị "bơm" (Inject) vào nơi khác</span>
+<span class="text-sky-400">export class</span> UsersService {
+  findUsers() { <span class="text-sky-400">return</span> [{ name: <span class="text-green-300">'Alice'</span> }]; }
+}
+
+<span class="text-slate-500">// 2. CONTROLLER (Lễ tân - Nơi định nghĩa Route, nhận Request)</span>
+@Controller(<span class="text-green-300">'users'</span>)
+<span class="text-sky-400">export class</span> UsersController {
+  <span class="text-slate-500">// (Dependency Injection): Giao Đầu bếp cho Lễ tân sử dụng</span>
+  <span class="text-sky-400">constructor</span>(<span class="text-sky-400">private readonly</span> usersService: UsersService) {}
+
+  @Get()
+  getUsers() { <span class="text-sky-400">return this</span>.usersService.findUsers(); }
+}
+
+<span class="text-slate-500">// 3. MODULE (Phòng ban - Đóng gói Lễ tân và Đầu bếp lại 1 cục)</span>
+@Module({
+  controllers: [UsersController],
+  providers: [UsersService],
+  exports: [UsersService] <span class="text-slate-500">// Xuất ra ngoài để Module khác (như AuthModule) gọi ké Service này</span>
+})
+<span class="text-sky-400">export class</span> UsersModule {}</pre>
+                </div>
+            </section>
+
+            <section id="nest-pipeline" class="mb-10 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-rose-600">#</span> 12. Request Pipeline & Format Data JSON</h3>
+                
+                <p class="text-sm text-slate-600 mb-4">Thứ tự luồng Request đi trong NestJS: <strong>Middleware → Guard → Interceptor (Pre) → Pipe → Controller → Interceptor (Post) → Exception Filter.</strong></p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- Auth Guard -->
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2">1. AuthGuard (Bảo vệ Route / Check JWT)</h4>
+                        <p class="text-[11px] text-slate-600 mb-2">Thay thế auth middleware. Trả về true thì cho qua, false ném lỗi 403 Forbidden.</p>
+                        <pre class="bg-slate-800 p-2 rounded text-[10px] text-slate-300 font-mono overflow-x-auto">
+@Injectable()
+<span class="text-sky-400">export class</span> AuthGuard <span class="text-sky-400">implements</span> CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    <span class="text-sky-400">const</span> req = context.switchToHttp().getRequest();
+    <span class="text-sky-400">const</span> token = req.headers.authorization;
+    <span class="text-sky-400">if</span> (!token) <span class="text-sky-400">return false</span>;
+    <span class="text-sky-400">return true</span>; <span class="text-slate-500">// Cho qua (hoặc check jwt.verify)</span>
+  }
+}
+<span class="text-slate-500">// Dùng trên Controller: @UseGuards(AuthGuard)</span></pre>
+                    </div>
+
+                    <!-- Custom Middleware -->
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2">2. Middleware (Kế thừa Express)</h4>
+                        <p class="text-[11px] text-slate-600 mb-2">Dùng tham số (req, res, next) y hệt Express. Chuyên dùng để logging, chặn IP.</p>
+                        <pre class="bg-slate-800 p-2 rounded text-[10px] text-slate-300 font-mono overflow-x-auto">
+@Injectable()
+<span class="text-sky-400">export class</span> LoggerMiddleware <span class="text-sky-400">implements</span> NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    console.log(<span class="text-green-300">`Request... ${req.method}`</span>);
+    next(); <span class="text-slate-500">// Quên gọi next() là treo server</span>
+  }
+}
+<span class="text-slate-500">// Đăng ký trong AppModule (implements NestModule)</span></pre>
+                    </div>
+                </div>
+
+                <!-- Interceptor (Format Custom Response) -->
+                <div class="bg-slate-900 rounded-xl overflow-hidden shadow-sm group relative cursor-pointer" onclick="copyCode(this)">
+                    <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between">
+                        <span class="text-xs text-slate-300 font-mono font-bold">3. Interceptor (Tự động bọc Data vào { statusCode, data, message })</span>
+                        <span class="text-xs text-slate-400">Copy</span>
+                    </div>
+                    <pre class="p-4 text-[11px] text-slate-300 font-mono overflow-x-auto">
+<span class="text-slate-500">// Khắc phục tính dài dòng của Express. Controller của bạn giờ chỉ cần "return {name: 'A'}"</span>
+<span class="text-slate-500">// Interceptor này sẽ bắt lại và bọc nó thành: { statusCode: 200, message: 'Thành công', data: {name: 'A'} }</span>
+<span class="text-sky-400">import</span> { CallHandler, ExecutionContext, Injectable, NestInterceptor } <span class="text-sky-400">from</span> <span class="text-green-300">'@nestjs/common'</span>;
+<span class="text-sky-400">import</span> { map } <span class="text-sky-400">from</span> <span class="text-green-300">'rxjs/operators'</span>;
+
+@Injectable()
+<span class="text-sky-400">export class</span> TransformInterceptor&lt;T&gt; <span class="text-sky-400">implements</span> NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler) {
+    <span class="text-sky-400">return</span> next.handle().pipe(
+      map(data => ({
+        statusCode: context.switchToHttp().getResponse().statusCode,
+        message: <span class="text-green-300">'Request thành công'</span>,
+        data: data || <span class="text-sky-400">null</span>,
+      })),
+    );
+  }
+}
+<span class="text-slate-500">// Kích hoạt toàn cục trong main.ts: app.useGlobalInterceptors(new TransformInterceptor());</span></pre>
+                </div>
+            </section>
+
+            <section id="nest-decorators" class="mb-16 scroll-mt-24">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2"><span class="text-rose-600">#</span> 13. Kỹ thuật Đỉnh cao (Decorators & Injection Scopes)</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2">Tạo Custom Decorator (@CurrentUser)</h4>
+                        <p class="text-[11px] text-slate-600 mb-2">Sau khi Guard check Token xong, nhét User vào `req.user`. Lúc này ta tạo Decorator để lấy nó ra ở Controller cho gọn (Thay vì gọi `req.user` lặp đi lặp lại).</p>
+                        <pre class="bg-slate-800 p-2 rounded text-[10px] text-slate-300 font-mono overflow-x-auto">
+<span class="text-sky-400">import</span> { createParamDecorator, ExecutionContext } <span class="text-sky-400">from</span> <span class="text-green-300">'@nestjs/common'</span>;
+
+<span class="text-sky-400">export const</span> CurrentUser = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext) => {
+    <span class="text-sky-400">const</span> request = ctx.switchToHttp().getRequest();
+    <span class="text-sky-400">return</span> request.user;
+  },
+);
+
+<span class="text-slate-500">// Cách xài: @Get() getProfile(@CurrentUser() user: UserEntity) {...}</span></pre>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2">Injection Scopes (Vòng đời của Provider)</h4>
+                        <p class="text-[11px] text-slate-600 mb-2">Mặc định Service trong NestJS là <strong>Singleton</strong> (Chỉ khởi tạo 1 lần dùng chung cho mọi user). Nếu muốn mỗi Request là 1 bản copy riêng thì xài Scope.</p>
+                        <ul class="text-[11px] text-slate-600 font-mono space-y-2 mt-3">
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">Scope.DEFAULT</span>: (Khuyên dùng) Singleton. Tiết kiệm RAM.</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">Scope.REQUEST</span>: Tạo class Service MỚI HOÀN TOÀN với mỗi Request gửi lên. (Ngốn RAM, cân nhắc khi làm Multi-tenant DB).</li>
+                            <li><span class="bg-slate-100 text-pink-600 px-1 rounded">Scope.TRANSIENT</span>: Khởi tạo mới mỗi khi bị Inject vào nơi khác.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-20 mb-4 bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 flex items-start gap-4">
+                <div class="text-3xl">📚</div>
+                <div>
+                    <h2 class="font-bold text-lg mb-1">Chặng 4: Từ Điển Thuật Ngữ IT</h2>
+                    <p class="text-sm">Gặp mấy từ viết tắt hay tiếng Anh này thì cứ mở bảng này ra xem. Giải thích cực ngắn theo ngôn ngữ con người (không văn vở học thuật).</p>
+                </div>
+            </div>
+
+            <section id="glossary" class="mb-16 scroll-mt-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Rendering -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">🌐 SSR (Server-Side Rendering)</h3>
+                        <p class="text-xs text-slate-600">Trình duyệt xin trang web, Server (Next.js) lấy data, lắp ghép sẵn ra HTML 100% hoàn chỉnh rồi mới trả về trình duyệt. Rất tốt cho SEO (Google bot đọc được ngay).</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">💻 CSR (Client-Side Rendering)</h3>
+                        <p class="text-xs text-slate-600">Kiểu cũ của React/Angular. Server trả về file HTML trống trơn + cục JS khổng lồ. Trình duyệt nhận về, hì hục chạy cục JS đó để vẽ lên giao diện. Bất lợi: Load lần đầu chậm, bot Google không đợi được để đọc.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">⚡ SSG & ISR</h3>
+                        <p class="text-xs text-slate-600"><strong>SSG:</strong> Build sẵn ra cục HTML vĩnh viễn lúc gõ `npm run build`.<br><strong>ISR:</strong> Giống SSG nhưng có tính năng "Hẹn giờ". VD hẹn 60s thì cứ sau 1 phút, nó ngầm build lại cục HTML tĩnh mới nhất thay cho cục cũ.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">💧 Hydration (Bù nước)</h3>
+                        <p class="text-xs text-slate-600">Cục HTML từ SSR trả về chỉ là "xác khô" (xem được nhưng không click được). Quá trình đính kèm các cục JS sự kiện (onClick, State) vào HTML để nó "sống lại" và tương tác được, gọi là Hydration.</p>
+                    </div>
+
+                    <!-- Backend / DB -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">📦 DTO (Data Transfer Object)</h3>
+                        <p class="text-xs text-slate-600">Cái hộp chứa dữ liệu. Dùng để định nghĩa hình dáng cục data gửi từ Frontend lên Backend (VD: CreateUserDto gồm email, password), giúp check xem FE gửi lên có thiếu trường nào không.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">🗄️ ORM (Prisma / TypeORM)</h3>
+                        <p class="text-xs text-slate-600">Phần mềm trung gian phiên dịch code TypeScript (OOP) sang câu lệnh truy vấn SQL thô. Giúp bạn code Database bằng Javascript mà không cần nhớ cú pháp SQL.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">💉 DI & IoC (Dependency Injection)</h3>
+                        <p class="text-xs text-slate-600">Thay vì class A tự dùng lệnh `new ClassB()` (tự mua nguyên liệu nấu ăn), thì Framework (NestJS) sẽ tạo sẵn ClassB bên ngoài và "bơm" (Inject) vào Class A qua Constructor. Làm vậy để lúc Test có thể nhét đồ giả (Mock) vào dễ dàng.</p>
+                    </div>
+                    
+                    <!-- Network / Security -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">🔑 JWT (JSON Web Token)</h3>
+                        <p class="text-xs text-slate-600">Thẻ ra vào dạng chuỗi mã hóa. Đăng nhập đúng, Backend cấp 1 thẻ Token. Lần sau FE muốn làm gì thì kẹp thẻ Token này vào Header (Bearer token) gửi lên. (Gồm Header, Payload, Signature).</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm hover:border-emerald-300 transition-colors">
+                        <h3 class="font-bold text-slate-800 mb-1 border-b pb-2">🚫 CORS (Cross-Origin)</h3>
+                        <p class="text-xs text-slate-600">Lỗi bảo mật nổi tiếng nhất. Trình duyệt mặc định CẤM Frontend ở tên miền <code>a.com</code> gọi sang Backend ở tên miền <code>api.b.com</code> để chống trộm data. Backend phải bật cấu hình cho phép tên miền <code>a.com</code> đi vào thì mới hết lỗi đỏ.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 bg-slate-800 text-white px-4 py-2 rounded shadow-lg transition-all duration-300 z-50 flex items-center gap-2">
+        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span>Đã copy code!</span>
+    </div>
+
+    <script>
+        // Copy functionality
+        function copyCode(element) {
+            let codeText = '';
+            const codeEl = element.querySelector('pre') || element.querySelector('code');
+            if (codeEl) {
+                codeText = codeEl.innerText || codeEl.textContent;
+            } else if (element.tagName.toLowerCase() === 'code' || element.tagName.toLowerCase() === 'pre') {
+                codeText = element.innerText;
+            }
+            if (!codeText) return;
+
+            let cleanCode = codeText.replace(/^\$\s/gm, '').trim();
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(cleanCode).then(showToast);
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = cleanCode;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast();
+                } catch (err) {}
+                textArea.remove();
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2000);
+        }
+
+        // Scroll spy for sidebar with group highlighting
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-ts', 'active-next', 'active-nest', 'active-glossary');
+                    const group = link.getAttribute('data-group');
+                    
+                    if (link.getAttribute('href').includes(current) && current !== '') {
+                        if(group === 'ts') link.classList.add('active-ts');
+                        if(group === 'next') link.classList.add('active-next');
+                        if(group === 'nest') link.classList.add('active-nest');
+                        if(group === 'glossary') link.classList.add('active-glossary');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
